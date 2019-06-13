@@ -1,0 +1,37 @@
+{{- if .Values.cloudsqlProxy.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mysqlbackup-db
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-mysqlbackup-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-mysqlbackup-db
+    spec:
+      containers:
+      - name: cloudsql-proxy
+        image: {{ .Values.cloudsqlProxy.image.repository }}:{{ .Values.cloudsqlProxy.image.tag }}
+        command:
+        - "/cloud_sql_proxy"
+        - "-instances={{ .Values.cloudsqlProxy.cloudSQL.gcProject }}:{{ .Values.cloudsqlProxy.cloudSQL.region }}:{{ .Values.cloudsqlProxy.cloudSQL.instanceId }}=tcp:0.0.0.0:{{ .Values.mysql.port }}"
+        - "-credential_file=/secrets/credentials/{{ .Values.cloudsqlProxy.cloudSQL.secret.keys.serviceAccount }}"
+        ports:
+        - name: mysql-backup
+          containerPort: {{ .Values.mysql.port }}
+          protocol: TCP
+        volumeMounts:
+        - name: {{ .Values.cloudsqlProxy.cloudSQL.secret.name }}
+          mountPath: /secrets/credentials
+          readOnly: true
+        resources:
+{{ toYaml .Values.cloudsqlProxy.resources | indent 10 }}
+      volumes:
+      - name: {{ .Values.cloudsqlProxy.cloudSQL.secret.name }}
+        secret:
+          secretName: {{ .Values.cloudsqlProxy.cloudSQL.secret.name }}
+{{- end }}

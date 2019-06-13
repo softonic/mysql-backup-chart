@@ -1,0 +1,53 @@
+mysql:
+  port: 3306
+  host: 127.0.0.1
+  database: null
+  secret:
+    name: mysql-credentials
+    keys:
+      user: user
+      password: password
+
+s3:
+  bucket: null
+  filePrefix: mysqldump
+  secret:
+    name: aws-credentials
+    keys:
+      accessKeyId: accessKeyId
+      secretAccessKey: secretAccessKey
+
+backup:
+  schedule: 0 1 * * *
+  image:
+    repository: softonic/mysql-backup-s3
+    tag: 0.1.5
+    imagePullSecret: null
+  resources:
+    limits:
+      memory: "1024Mi"
+      cpu: "1"
+    requests:
+      memory: "512Mi"
+      cpu: "200m"
+
+cloudsqlProxy:
+  enabled: false
+  cloudSQL:
+    secret:
+      name: cloudsql-credentials
+      keys:
+        serviceAccount: "serviceAccount.json"
+    gcProject: null
+    instanceId: null
+    region: null
+  image:
+    repository: gcr.io/cloudsql-docker/gce-proxy
+    tag: 1.13
+  resources:
+    limits:
+      memory: "32Mi"
+      cpu: "1"
+    requests:
+      memory: "16Mi"
+      cpu: "10m"

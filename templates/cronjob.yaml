@@ -1,0 +1,64 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}-mysqlbackup
+spec:
+  schedule: "{{ .Values.backup.schedule }}"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: mysqlbackup
+      {{- with .Values.backup.annotations }}
+          annotations:
+{{ toYaml . | indent 12 }}
+      {{- end }}
+        spec:
+          serviceAccountName: mysqlbackup
+          containers:
+          - name: backup
+            image: "{{ .Values.backup.image.repository }}:{{ .Values.backup.image.tag }}"
+            env:
+{{- if .Values.cloudsqlProxy.enabled }}
+            - name: MYSQL_HOST
+              value: "{{ .Release.Name }}-mysqlbackup-db"
+{{- else }}
+            - name: MYSQL_HOST
+              value: "{{ .Values.mysql.host }}"
+{{- end }}
+            - name: MYSQL_PORT
+              value: "{{ .Values.mysql.port }}"
+            - name: MYSQL_DATABASE
+              value: "{{ .Values.mysql.database }}"
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mysql.secret.name }}
+                  key: {{ .Values.mysql.secret.keys.user }}
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mysql.secret.name }}
+                  key: {{ .Values.mysql.secret.keys.password }}
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.s3.secret.name }}
+                  key: {{ .Values.s3.secret.keys.accessKeyId }}
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.s3.secret.name }}
+                  key: {{ .Values.s3.secret.keys.secretAccessKey }}
+            - name: AWS_S3_FILE_PREFIX
+              value: {{ .Values.s3.filePrefix }}
+            - name: AWS_S3_BUCKET
+              value: {{ .Values.s3.bucket }}
+            resources:
+{{ toYaml .Values.backup.resources | indent 12 }}
+{{- if .Values.backup.image.imagePullSecret }}
+          imagePullSecrets:
+          - name: {{ .Values.image.imagePullSecrets }}
+{{- end }}
+          restartPolicy: OnFailure

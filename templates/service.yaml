@@ -1,0 +1,14 @@
+{{- if .Values.cloudsqlProxy.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mysqlbackup-db
+spec:
+  type: "ClusterIP"
+  ports:
+    - port: {{ .Values.mysql.port }}
+      targetPort: mysql-backup
+      protocol: "TCP"
+  selector:
+    app: {{ .Release.Name }}-mysqlbackup-db
+{{- end }}
