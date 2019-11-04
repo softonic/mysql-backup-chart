@@ -7,8 +7,8 @@ env:
 before_install:
 - wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz"
 - tar zvxf helm-${HELM_VERSION}-linux-amd64.tar.gz
-- mv linux-amd64/helm helm
-- chmod u+x helm
+- mv linux-amd64/helm /usr/local/bin/helm
+- chmod u+x /usr/local/bin/helm
 - helm init --client-only
 - helm repo add softonic $URL_CHARTMUSEUM
 
