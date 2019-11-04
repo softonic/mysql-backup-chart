@@ -1,7 +1,5 @@
 language: generic
 
-
-
 env:
   global:
   - HELM_VERSION="v2.14.3"
