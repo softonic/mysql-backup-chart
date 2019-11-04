@@ -1,0 +1,21 @@
+language: generic
+
+env:
+  global:
+  - HELM_VERSION="v2.14.3"
+  - KUBEVAL_VERSION="0.13.0"
+
+before_install:
+- wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz"
+- tar zvxf helm-${HELM_VERSION}-linux-amd64.tar.gz
+- mv linux-amd64/helm helm
+- chmod u+x helm
+- helm init --client-only
+- helm repo add softonic $URL_CHARTMUSEUM
+
+install:
+- mkdir temp
+- echo $(pwd)
+- helm package . -d temp
+- cd temp
+- helm lint .
