@@ -18,4 +18,4 @@ install:
 - echo $(pwd)
 - ./helm package . -d temp
 - ./helm lint .
-- ./helm push temp/ softonic
+- ./helm push . softonic
