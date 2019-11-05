@@ -16,4 +16,4 @@ before_install:
 
 install:
 - ./helm lint .
-- ./helm push . softonic
+- ./helm push . softonic --force
