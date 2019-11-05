@@ -16,4 +16,4 @@ install:
 - mkdir temp
 - echo $(pwd)
 - ./helm package . -d temp
-- ./helm lint temp/
+- ./helm lint .
