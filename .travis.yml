@@ -12,6 +12,7 @@ before_install:
 - ./helm init --client-only
 - ./helm repo add softonic $URL_CHARTMUSEUM
 - ./helm plugin install https://github.com/chartmuseum/helm-push
+- ./helm repo list
 
 install:
 - ./helm lint .
