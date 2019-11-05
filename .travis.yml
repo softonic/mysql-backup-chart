@@ -5,16 +5,15 @@ env:
   - HELM_VERSION="v2.14.3"
 
 before_install:
-- wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz"
-- tar zvxf helm-${HELM_VERSION}-linux-amd64.tar.gz
-- mv linux-amd64/helm helm
-- chmod u+x helm
-- ./helm init --client-only
-- ./helm repo add softonic $URL_CHARTMUSEUM
-- ./helm plugin install https://github.com/chartmuseum/helm-push
-- ./helm repo list
+- wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz" -O /tmp/helm-${HELM_VERSION}-linux-amd64.tar.gz
+- tar zvxf /tmp/helm-${HELM_VERSION}-linux-amd64.tar.gz -C /tmp
+- chmod u+x /tmp/helm
+- /tmp/helm init --client-only
+- /tmp/helm repo add softonic $URL_CHARTMUSEUM
+- /tmp/helm plugin install https://github.com/chartmuseum/helm-push
+- /tmp/helm repo list
 - ls -lrta 
 
 install:
-- ./helm lint .
-- ./helm push . softonic --force
+- /tmp/helm lint .
+- /tmp/helm push . softonic --force
