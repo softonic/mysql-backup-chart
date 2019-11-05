@@ -20,8 +20,8 @@ s3:
 backup:
   schedule: 0 1 * * *
   image:
-    repository: softonic/mysql-backup-s3
-    tag: 0.1.5
+    repository: softonic/mysql-backup
+    tag: 0.2.0
     imagePullSecret: null
   resources:
     limits:

@@ -11,9 +11,11 @@ before_install:
 - chmod u+x helm
 - ./helm init --client-only
 - ./helm repo add softonic $URL_CHARTMUSEUM
+- ./helm plugin install https://github.com/chartmuseum/helm-push
 
 install:
 - mkdir temp
 - echo $(pwd)
 - ./helm package . -d temp
 - ./helm lint .
+- ./helm push . softonic
