@@ -1,10 +1,10 @@
-language: generic
+language: minimal
 
 env:
   global:
   - HELM_VERSION="v2.14.3"
 
-before_install:
+install:
 - wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz" -O /tmp/helm.tar.gz
 - tar zvxf /tmp/helm.tar.gz -C /tmp
 - mv /tmp/linux-amd64/helm /tmp/helm
@@ -15,6 +15,10 @@ before_install:
 - /tmp/helm repo list
 - /tmp/helm lint .
 
-install:
-if: branch = master
-- /tmp/helm push . softonic --force
+
+deploy:
+  provider: script
+  script: 
+  - /tmp/helm push . softonic --force
+  on:
+    branch: master
