@@ -13,8 +13,8 @@ before_install:
 - /tmp/helm repo add softonic $URL_CHARTMUSEUM
 - /tmp/helm plugin install https://github.com/chartmuseum/helm-push
 - /tmp/helm repo list
-- ls -lrta 
+- /tmp/helm lint .
 
 install:
-- /tmp/helm lint .
+if: branch = master
 - /tmp/helm push . softonic --force
