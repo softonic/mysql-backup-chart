@@ -27,7 +27,7 @@ backup:
   schedule: 0 1 * * *
   image:
     repository: softonic/mysql-backup
-    tag: 0.2.0
+    tag: 0.2.1
     imagePullSecret: null
   resources:
     limits:
