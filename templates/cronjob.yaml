@@ -41,18 +41,22 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.mysql.secret.name }}
                   key: {{ .Values.mysql.secret.keys.password }}
+{{- if .Values.s3.enabled }}
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.s3.secret.name }}
                   key: {{ .Values.s3.secret.keys.accessKeyId }}
+{{- end }}
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.s3.secret.name }}
                   key: {{ .Values.s3.secret.keys.secretAccessKey }}
+{{- if .Values.gcs.enabled }}
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: "/secrets/gcs-credentials.json"
+{{- end }}
             - name: AWS_S3_FILE_PREFIX
               value: {{ .Values.s3.filePrefix }}
             - name: AWS_S3_BUCKET
@@ -74,4 +78,4 @@ spec:
           volumes:
           - name: credentials
             secret:
-              secretName: credentials
+              secretName: gcs-credentials
