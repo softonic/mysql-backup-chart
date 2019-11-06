@@ -26,6 +26,8 @@ This charts curretnly supports only AWS S3 as object storage.
 | `s3.secret.name`                                    | AWS s3 credentials Secret name                                | `mysql-credentials`                |
 | `s3.secret.keys.accessKeyId`                        | AWS s3 accessKeyId keys in credentials secret                 | `accessKeyId`                      |
 | `s3.secret.keys.secretAccessKey`                    | AWS s3 secretAccessKey keys in credentials secret             | `secretAccessKey`                  |
+| `gcs.bucket`                                        | GCP gcs bucket name                                           | `null`                             |
+| `gcs.filePrefix`                                    | GCP gcs file prefix used for backup                           | `mysqldump`                        |
 | `backup.schedule`                                   | When to run the backup, cron format                           | `0 1 * * *`                        |
 | `backup.image.repository`                           | Image used to perform the backup                              | `softonic/mysql-backup-s3`         |
 | `backup.image.tag`                                  | Tag used for the image                                        | `0.1.5`                            |

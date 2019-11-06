@@ -9,6 +9,7 @@ mysql:
       password: password
 
 s3:
+  enabled: true
   bucket: null
   filePrefix: mysqldump
   secret:
@@ -17,11 +18,16 @@ s3:
       accessKeyId: accessKeyId
       secretAccessKey: secretAccessKey
 
+gcs:
+  enabled: true
+  bucket: null
+  filePrefix: mysqldump
+
 backup:
   schedule: 0 1 * * *
   image:
     repository: softonic/mysql-backup
-    tag: 0.2.0
+    tag: 0.2.1
     imagePullSecret: null
   resources:
     limits:
