@@ -17,6 +17,10 @@ s3:
       accessKeyId: accessKeyId
       secretAccessKey: secretAccessKey
 
+gcs:
+  bucket: null
+  filePrefix: mysqldump
+
 backup:
   schedule: 0 1 * * *
   image:

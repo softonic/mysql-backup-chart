@@ -51,10 +51,19 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.s3.secret.name }}
                   key: {{ .Values.s3.secret.keys.secretAccessKey }}
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/secrets/gcs-credentials.json"
             - name: AWS_S3_FILE_PREFIX
               value: {{ .Values.s3.filePrefix }}
             - name: AWS_S3_BUCKET
               value: {{ .Values.s3.bucket }}
+            - name: GCP_GCS_FILE_PREFIX
+              value: {{ .Values.gcs.filePrefix }}
+            - name: GCP_GCS_BUCKET
+              value: {{ .Values.gcs.bucket }}
+            volumeMounts:
+            - name: credentials
+              mountPath: /secrets
             resources:
 {{ toYaml .Values.backup.resources | indent 12 }}
 {{- if .Values.backup.image.imagePullSecret }}
@@ -62,3 +71,7 @@ spec:
           - name: {{ .Values.image.imagePullSecrets }}
 {{- end }}
           restartPolicy: OnFailure
+          volumes:
+          - name: credentials
+            secret:
+              secretName: credentials
