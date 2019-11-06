@@ -5,6 +5,7 @@ env:
   - HELM_VERSION="v2.14.3"
 
 
+
 install:
 - wget "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz" -O /tmp/helm.tar.gz
 - tar zvxf /tmp/helm.tar.gz -C /tmp
@@ -23,4 +24,3 @@ deploy:
   - /tmp/helm push . softonic --force
   on:
     branch: master
-    type: pull_request
