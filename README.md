@@ -21,11 +21,13 @@ This charts curretnly supports only AWS S3 as object storage.
 | `mysql.secret.name`                                 | MySQL credentials Secret name                                 | `mysql-credentials`                |
 | `mysql.secret.keys.user`                            | MySQL user keys in credentials secret                         | `user`                             |
 | `mysql.secret.keys.password`                        | MySQL password keys in credentials secret                     | `password`                         |
+| `s3.enabled`                                        | Enable AWS s3 backups                                         | `false`                            |
 | `s3.bucket`                                         | AWS s3 bucket name                                            | `null`                             |
 | `s3.filePrefix`                                     | AWS s3 file prefix used for backup                            | `null`                             |
 | `s3.secret.name`                                    | AWS s3 credentials Secret name                                | `mysql-credentials`                |
 | `s3.secret.keys.accessKeyId`                        | AWS s3 accessKeyId keys in credentials secret                 | `accessKeyId`                      |
 | `s3.secret.keys.secretAccessKey`                    | AWS s3 secretAccessKey keys in credentials secret             | `secretAccessKey`                  |
+| `gcs.enabled`                                       | Enable GCP gcs backups                                        | `false`                            |
 | `gcs.bucket`                                        | GCP gcs bucket name                                           | `null`                             |
 | `gcs.filePrefix`                                    | GCP gcs file prefix used for backup                           | `mysqldump`                        |
 | `backup.schedule`                                   | When to run the backup, cron format                           | `0 1 * * *`                        |

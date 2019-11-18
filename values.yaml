@@ -9,7 +9,7 @@ mysql:
       password: password
 
 s3:
-  enabled: true
+  enabled: false
   bucket: null
   filePrefix: mysqldump
   secret:
@@ -19,7 +19,7 @@ s3:
       secretAccessKey: secretAccessKey
 
 gcs:
-  enabled: true
+  enabled: false
   bucket: null
   filePrefix: mysqldump
 
