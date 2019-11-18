@@ -74,6 +74,18 @@ spec:
           imagePullSecrets:
           - name: {{ .Values.image.imagePullSecrets }}
 {{- end }}
+          {{- with .Values.backup.nodeSelector }}
+          nodeSelector:
+{{ toYaml . | indent 12 }}
+          {{- end }}
+          {{- with .Values.backup.affinity }}
+          affinity:
+{{ toYaml . | indent 12 }}
+          {{- end }}
+          {{- with .Values.backup.tolerations }}
+          tolerations:
+{{ toYaml . | indent 12 }}
+          {{- end }}
           restartPolicy: OnFailure
           volumes:
           - name: credentials

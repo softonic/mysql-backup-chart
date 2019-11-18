@@ -36,6 +36,10 @@ backup:
     requests:
       memory: "512Mi"
       cpu: "200m"
+  annotations: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
 
 cloudsqlProxy:
   enabled: false
@@ -57,3 +61,7 @@ cloudsqlProxy:
     requests:
       memory: "16Mi"
       cpu: "10m"
+  annotations: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
