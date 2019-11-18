@@ -9,7 +9,7 @@ mysql:
       password: password
 
 s3:
-  enabled: true
+  enabled: false
   bucket: null
   filePrefix: mysqldump
   secret:
@@ -19,7 +19,7 @@ s3:
       secretAccessKey: secretAccessKey
 
 gcs:
-  enabled: true
+  enabled: false
   bucket: null
   filePrefix: mysqldump
 
@@ -36,6 +36,10 @@ backup:
     requests:
       memory: "512Mi"
       cpu: "200m"
+  annotations: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
 
 cloudsqlProxy:
   enabled: false
@@ -57,3 +61,7 @@ cloudsqlProxy:
     requests:
       memory: "16Mi"
       cpu: "10m"
+  annotations: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
