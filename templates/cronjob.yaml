@@ -65,9 +65,11 @@ spec:
               value: {{ .Values.gcs.filePrefix }}
             - name: GCP_GCS_BUCKET
               value: {{ .Values.gcs.bucket }}
+{{- if .Values.gcs.enabled }}
             volumeMounts:
             - name: credentials
               mountPath: /secrets
+{{- end }}
             resources:
 {{ toYaml .Values.backup.resources | indent 12 }}
 {{- if .Values.backup.image.imagePullSecret }}
@@ -87,7 +89,9 @@ spec:
 {{ toYaml . | indent 12 }}
           {{- end }}
           restartPolicy: OnFailure
+{{- if .Values.gcs.enabled }}
           volumes:
           - name: credentials
             secret:
               secretName: gcs-credentials
+{{- end }}
