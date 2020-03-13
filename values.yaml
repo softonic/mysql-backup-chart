@@ -36,6 +36,7 @@ backup:
     requests:
       memory: "512Mi"
       cpu: "200m"
+  podLabels: {}
   annotations: {}
   nodeSelector: {}
   tolerations: []
@@ -43,6 +44,7 @@ backup:
 
 cloudsqlProxy:
   enabled: false
+  podLabels: {}
   cloudSQL:
     secret:
       name: cloudsql-credentials

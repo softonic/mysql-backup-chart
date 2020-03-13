@@ -10,6 +10,9 @@ spec:
         metadata:
           labels:
             app: mysqlbackup
+{{- with .Values.backup.podLabels }}
+{{ toYaml . | indent 12 }}
+{{- end }}
       {{- with .Values.backup.annotations }}
           annotations:
 {{ toYaml . | indent 12 }}

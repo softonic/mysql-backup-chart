@@ -12,6 +12,9 @@ spec:
     metadata:
       labels:
         app: {{ .Release.Name }}-mysqlbackup-db
+{{- with .Values.cloudsqlProxy.podLabels }}
+{{ toYaml . | indent 8 }}
+{{- end }}
       {{- with .Values.backup.annotations }}
       annotations:
 {{ toYaml . | indent 8 }}
