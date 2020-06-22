@@ -74,7 +74,7 @@ spec:
               mountPath: /secrets
 {{- end }}
             resources:
-{{ toYaml .Values.backup.resources | indent 14 }}
+{{- toYaml .Values.backup.resources | nindent 14 }}
 {{- if .Values.backup.image.imagePullSecret }}
           imagePullSecrets:
           - name: {{ .Values.image.imagePullSecrets }}
