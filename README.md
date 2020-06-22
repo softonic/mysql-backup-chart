@@ -3,7 +3,7 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/softonic/mysql-backups.svg)](http://isitmaintained.com/project/softonic/mysql-backups "Average time to resolve an issue")
 ![GitHub issues](https://img.shields.io/github/issues-raw/softonic/mysql-backups)
 
-# Mysql Backups
+# Mysql Backup
 
 ### Overview
 
@@ -58,7 +58,7 @@ If we want to backup database `example` in mysql instance reachable at `10.0.0.2
 Note that secrets `example-db-credentials` and `aws-credentials` are already existing secrets.
 
 ```bash
-mysql-backups:
+mysql-backup:
   enabled: true
   mysql:
     host: 10.0.0.2
@@ -69,6 +69,7 @@ mysql-backups:
         user: db.backup.user
         password: db.backup.pass
   s3:
+    enabled: true
     bucket: example-bucket
     filePrefix: my-prefix
     secret:
