@@ -27,8 +27,7 @@ This charts curretnly supports only AWS S3 as object storage.
 | `s3.secret.name`                                    | AWS s3 credentials Secret name                                | `mysql-credentials`                |
 | `s3.secret.keys.accessKeyId`                        | AWS s3 accessKeyId keys in credentials secret                 | `accessKeyId`                      |
 | `s3.secret.keys.secretAccessKey`                    | AWS s3 secretAccessKey keys in credentials secret             | `secretAccessKey`                  |
-| `s3.endpoint.enabled`                               | Enable s3 custom endpoint                                     | `false`                            |
-| `s3.endpoint.url`                                   | Custom s3 endpoint URL                                        | `myS3-endpoint`                    |
+| `s3.endpointUrl`                                    | Custom s3 endpoint URL                                        | `null`                             |
 | `gcs.enabled`                                       | Enable GCP gcs backups                                        | `false`                            |
 | `gcs.bucket`                                        | GCP gcs bucket name                                           | `null`                             |
 | `gcs.filePrefix`                                    | GCP gcs file prefix used for backup                           | `mysqldump`                        |
