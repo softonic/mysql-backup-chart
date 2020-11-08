@@ -56,6 +56,10 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.s3.secret.name }}
                   key: {{ .Values.s3.secret.keys.secretAccessKey }}
+{{- if .Values.s3.endpoint.enabled }}
+            - name: AWS_ENDPOINT_URL
+              value: "{{ .Values.s3.endpoint.url }}"
+{{- end }}
 {{- if .Values.gcs.enabled }}
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: "/secrets/gcs-credentials.json"
@@ -77,7 +81,7 @@ spec:
 {{- toYaml .Values.backup.resources | nindent 14 }}
 {{- if .Values.backup.image.imagePullSecret }}
           imagePullSecrets:
-          - name: {{ .Values.image.imagePullSecrets }}
+          - name: {{ .Values.backup.image.imagePullSecrets }}
 {{- end }}
           {{- with .Values.backup.nodeSelector }}
           nodeSelector:
