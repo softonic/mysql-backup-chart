@@ -17,9 +17,7 @@ s3:
     keys:
       accessKeyId: accessKeyId
       secretAccessKey: secretAccessKey
-   endpoint:
-     enabled: false
-     url: myS3-endpoint
+   endpointUrl: null
 
 gcs:
   enabled: false
