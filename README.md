@@ -11,7 +11,7 @@ This chart aims to backup target mysql instances into object storage.
 
 It can read data from a mysql instance or through GCP cloud SQL proxy.
 
-This charts curretnly supports only AWS S3 as object storage.
+This charts currently supports AWS S3 and Google Cloud Storage as object storage.
 
 | Parameter                                           | Description                                                   | Default                            |
 | --------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------- |
@@ -34,7 +34,7 @@ This charts curretnly supports only AWS S3 as object storage.
 | `backup.schedule`                                   | When to run the backup, cron format                           | `0 1 * * *`                        |
 | `backup.image.repository`                           | Image used to perform the backup                              | `softonic/mysql-backup-s3`         |
 | `backup.image.tag`                                  | Tag used for the image                                        | `0.1.5`                            |
-| `backup.image.imagePullSecret`                      | Image pull secret                                             | `null`                             |
+| `backup.image.imagePullSecrets`                     | Image pull secrets                                            | `null`                             |
 | `backup.resources.limits.memory`                    | Resources limits for memory for mysql-backups container       | `1024Mi`                           |
 | `backup.resources.limits.cpu`                       | Resources limits for CPU for mysql-backups container          | `1`                                |
 | `backup.resources.requests.memory`                  | Resources requests for memory for mysql-backups container     | `512Mi`                            |

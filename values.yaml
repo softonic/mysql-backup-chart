@@ -29,7 +29,7 @@ backup:
   image:
     repository: softonic/mysql-backup
     tag: 0.3.0
-    imagePullSecret: null
+    imagePullSecrets: null
   resources:
     limits:
       memory: "1024Mi"
