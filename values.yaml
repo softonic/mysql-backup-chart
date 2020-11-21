@@ -12,12 +12,12 @@ s3:
   enabled: false
   bucket: null
   filePrefix: mysqldump
+  endpointUrl: null
   secret:
     name: aws-credentials
     keys:
       accessKeyId: accessKeyId
       secretAccessKey: secretAccessKey
-   endpointUrl: null
 
 gcs:
   enabled: false
