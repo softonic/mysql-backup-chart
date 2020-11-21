@@ -12,12 +12,12 @@ s3:
   enabled: false
   bucket: null
   filePrefix: mysqldump
+  endpointUrl: null
   secret:
     name: aws-credentials
     keys:
       accessKeyId: accessKeyId
       secretAccessKey: secretAccessKey
-   endpointUrl: null
 
 gcs:
   enabled: false
@@ -29,7 +29,7 @@ backup:
   image:
     repository: softonic/mysql-backup
     tag: 0.3.0
-    imagePullSecret: null
+    imagePullSecrets: null
   resources:
     limits:
       memory: "1024Mi"

@@ -1,6 +1,7 @@
 Taking snapshots at {{ .Values.backup.schedule }} for
-{{- if .Values.cloudsqlProxy.cloudSQL }}
-{{ .Values.cloudsqlProxy.cloudSQL.instanceId }} ( {{ .Values.cloudsqlProxy.cloudSQL.region }} )
+{{ if .Values.cloudsqlProxy.cloudSQL.enabled -}}
+CloudSQL Proxy: {{ .Values.cloudsqlProxy.cloudSQL.instanceId }} ( {{ .Values.cloudsqlProxy.cloudSQL.region }} )
 {{- else }}
-{{ .Values.mysql.host }}:{{ .Values.mysql.port }}
-{{ end }}
+MySQL-Host: {{ .Values.mysql.host }}:{{ .Values.mysql.port }}
+{{- end }}
+Database(s): {{ .Values.mysql.database }}
