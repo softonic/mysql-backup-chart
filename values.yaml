@@ -17,7 +17,7 @@ s3:
     keys:
       accessKeyId: accessKeyId
       secretAccessKey: secretAccessKey
-   endpointUrl: null
+  endpointUrl: null
 
 gcs:
   enabled: false
@@ -25,7 +25,7 @@ gcs:
   filePrefix: mysqldump
 
 backup:
-  schedule: 0 1 * * *
+  schedule: "0 1 * * *"
   image:
     repository: softonic/mysql-backup
     tag: 0.3.0
