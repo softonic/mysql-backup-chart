@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: 'helm plugin install https://github.com/chartmuseum/helm-push.git'
-    - run: 'helm push . https://charts.softonic.io -u ${{ secrets.CHARTMUSEUM_USER }} -p ${{ secrets.CHARTMUSEUM_PASSWORD }}'
+    - run: 'helm push . https://charts.softonic.io'
