@@ -1,4 +1,8 @@
+{{- if .Capabilities.APIVersions.Has "batch/v1" -}}
+apiVersion: batch/v1
+{{- else -}}
 apiVersion: batch/v1beta1
+{{- end }}
 kind: CronJob
 metadata:
   name: {{ .Release.Name }}-mysqlbackup
@@ -81,7 +85,7 @@ spec:
 {{- toYaml .Values.backup.resources | nindent 14 }}
 {{- if .Values.backup.image.imagePullSecret }}
           imagePullSecrets:
-          - name: {{ .Values.backup.image.imagePullSecrets }}
+          - name: {{ .Values.backup.image.imagePullSecret }}
 {{- end }}
           {{- with .Values.backup.nodeSelector }}
           nodeSelector:
