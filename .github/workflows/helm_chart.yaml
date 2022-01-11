@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: 'helm plugin install https://github.com/chartmuseum/helm-push.git'
-    - run: 'helm push . https://charts.softonic.io'
+    - run: 'helm cm-push . https://charts.softonic.io'
