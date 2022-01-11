@@ -11,10 +11,5 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - uses: goodsmileduck/helm-push-action@v3.7.2
-      env:
-        SOURCE_DIR: '.'
-        CHART_FOLDER: '.'
-        CHARTMUSEUM_URL: 'https://charts.softonic.io'
-        CHARTMUSEUM_USER: '${{ secrets.CHARTMUSEUM_USER }}'
-        CHARTMUSEUM_PASSWORD: '${{ secrets.CHARTMUSEUM_PASSWORD }}'
+    - run: 'helm plugin install https://github.com/chartmuseum/helm-push.git'
+    - run: 'helm push . https://charts.softonic.io -u ${{ secrets.CHARTMUSEUM_USER }} -p ${{ secrets.CHARTMUSEUM_PASSWORD }}'
