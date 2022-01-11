@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: goodsmileduck/helm-push-action@v3.2.4
+    - uses: goodsmileduck/helm-push-action@v3.7.2
       env:
         SOURCE_DIR: '.'
         CHART_FOLDER: '.'
