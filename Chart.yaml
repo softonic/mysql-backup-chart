@@ -3,7 +3,7 @@ appVersion: "0.3.0"
 description: Take mysql backups from any mysql instance to AWS S3. Supports GCP CloudSQL
 name: mysql-backup
 icon: https://avatars0.githubusercontent.com/u/170456
-version: 2.2.0
+version: 2.2.1
 sources:
   - https://github.com/softonic/mysql-backup-chart
 keywords:
