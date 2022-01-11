@@ -17,7 +17,7 @@ This charts curretnly supports only AWS S3 as object storage.
 | --------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------- |
 | `mysql.port`                                        | MySQL instance port                                           | `3306`                             |
 | `mysql.host`                                        | MySQL instance host                                           | `127.0.0.1`                        |
-| `mysql.database`                                    | MySQL instance database name                                  | `null`                             |
+| `mysql.database`                                    | Mysql databases name(s). Space-separated if more than one db, e.g. "db-1 db-2 db3". If null - will try to dump all databases by using `mysqldump --all-databases` flag                              | `null` |
 | `mysql.secret.name`                                 | MySQL credentials Secret name                                 | `mysql-credentials`                |
 | `mysql.secret.keys.user`                            | MySQL user keys in credentials secret                         | `user`                             |
 | `mysql.secret.keys.password`                        | MySQL password keys in credentials secret                     | `password`                         |
