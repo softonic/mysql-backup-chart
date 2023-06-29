@@ -26,6 +26,7 @@ gcs:
 
 backup:
   schedule: "0 1 * * *"
+  # ttlSecondsAfterFinished: 3600 # Optional (Number of seconds before deleting completed jobs)
   image:
     repository: softonic/mysql-backup
     tag: 0.4.0

@@ -10,6 +10,9 @@ spec:
   schedule: "{{ .Values.backup.schedule }}"
   jobTemplate:
     spec:
+{{- if .Values.backup.ttlSecondsAfterFinished }}
+      ttlSecondsAfterFinished: {{ .Values.backup.ttlSecondsAfterFinished }}
+{{- end }}
       template:
         metadata:
           labels:
